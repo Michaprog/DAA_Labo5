@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "ch.heigvd.iict.daa.template"
+    namespace = "ch.heigvd.iict.daa.labo5"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "ch.heigvd.iict.daa.template"
+        applicationId = "ch.heigvd.iict.daa.labo5"
         minSdk = 23
         targetSdk = 36
         versionCode = 1
