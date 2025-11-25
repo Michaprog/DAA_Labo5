@@ -5,8 +5,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import ch.heigvd.iict.daa.labo5.placeholder.PlaceholderContent
 
 class MainActivity : AppCompatActivity() {
+
+    private var columnCount = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         // on spécifie le layout à afficher
-        setContentView(R.layout.activity_main_linear)
+        setContentView(R.layout.activity_main)
 
         // comme edge2edge est activé, l'application doit garder un espace suffisant pour la barre système
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -27,8 +33,16 @@ class MainActivity : AppCompatActivity() {
         // la barre d'action doit être définie dans le layout, on la lie à l'activité
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        // TODO ...
+        val list = findViewById<RecyclerView>(R.id.list)
 
+        // Set the adapter
+        with(list) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
+            }
+            adapter = MyImagesRecyclerViewAdapter(PlaceholderContent.ITEMS)
+        }
     }
 
 }
